@@ -1,5 +1,6 @@
-package com.sample.bank.domain
+package com.sample.bank.domain.exchange
 
+import com.sample.bank.domain.account.AccountOwnerId
 import com.sample.bank.domain.ports.ExchangeRate
 import java.math.BigDecimal
 import java.util.*
@@ -51,13 +52,12 @@ data class CurrencyAccount(val id: CurrencyAccountId, val money: Money) {
         copy(money = this.money.add(other))
 
     companion object {
-        fun create(currency: Currency) =
+        fun create(currency: Currency, initialAmount: BigDecimal = BigDecimal.ZERO) =
             CurrencyAccount(
                 id = CurrencyAccountId(UUID.randomUUID().toString()),
-                money = Money.from(BigDecimal.ZERO, currency)
+                money = Money.from(initialAmount, currency)
             )
     }
-
 }
 
 data class CurrencyAccountId(val raw: String)

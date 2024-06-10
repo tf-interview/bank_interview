@@ -1,4 +1,4 @@
-package com.sample.bank.domain
+package com.sample.bank.domain.exchange
 
 import com.sample.bank.TestCurrencies
 import org.junit.jupiter.api.Test
