@@ -3,12 +3,14 @@ package com.sample.bank.domain.account.verification
 import com.sample.bank.domain.account.RegisterAccountOwnerCommand
 import com.sample.bank.domain.account.verification.VerificationFailureReason.NOT_ADULT
 import com.sample.bank.domain.ports.AccountOwnersRepository
+import org.springframework.stereotype.Component
 import java.time.Period
 
 interface AccountRegistrationVerifier {
     fun verify(command: RegisterAccountOwnerCommand): VerificationResult
 }
 
+@Component
 class AgeAccountRegistrationVerifier(private val clock: TimeProvider) : AccountRegistrationVerifier {
     override fun verify(command: RegisterAccountOwnerCommand): VerificationResult {
         val period = Period.between(command.pesel.birthDate(), clock.today())
@@ -18,6 +20,7 @@ class AgeAccountRegistrationVerifier(private val clock: TimeProvider) : AccountR
     }
 }
 
+@Component
 class DuplicationAccountRegistrationVerifier(
     private val repository: AccountOwnersRepository
 ) : AccountRegistrationVerifier {

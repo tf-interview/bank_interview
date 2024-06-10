@@ -4,9 +4,11 @@ import com.sample.bank.domain.account.AccountOwnerId
 import com.sample.bank.domain.ports.CurrencyAccountsRepository
 import com.sample.bank.domain.ports.ExchangeRateProvider
 import com.sample.bank.getLoggerForClass
+import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.util.Currency
 
+@Service
 class ExchangeService(
     private val currencyAccountsRepository: CurrencyAccountsRepository,
     private val exchangeRates: ExchangeRateProvider

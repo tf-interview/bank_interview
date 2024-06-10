@@ -2,7 +2,10 @@ package com.sample.bank.domain.account.verification
 
 import com.sample.bank.domain.account.RegisterAccountOwnerCommand
 import com.sample.bank.getLoggerForClass
+import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
+@Component
 class AccountRegistrationVerifiers(private val verifiers: List<AccountRegistrationVerifier>) {
 
     fun verify(command: RegisterAccountOwnerCommand) {

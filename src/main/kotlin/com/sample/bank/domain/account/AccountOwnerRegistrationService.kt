@@ -6,8 +6,10 @@ import com.sample.bank.domain.exchange.CurrencyAccount
 import com.sample.bank.domain.ports.AccountOwnersRepository
 import com.sample.bank.domain.ports.CurrencyAccountsRepository
 import com.sample.bank.getLoggerForClass
+import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
+@Service
 class AccountOwnerRegistrationService(
     private val verifiers: AccountRegistrationVerifiers,
     private val accountOwnersRepository: AccountOwnersRepository,
