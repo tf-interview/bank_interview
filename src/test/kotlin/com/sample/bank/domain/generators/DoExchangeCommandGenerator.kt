@@ -1,6 +1,6 @@
 package com.sample.bank.domain.generators
 
-import com.sample.bank.TestCurrencies
+import com.sample.bank.domain.TestCurrencies
 import com.sample.bank.domain.account.AccountOwnerId
 import com.sample.bank.domain.exchange.DoExchangeCommand
 import java.math.BigDecimal

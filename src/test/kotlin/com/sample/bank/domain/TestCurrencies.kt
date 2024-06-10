@@ -1,4 +1,4 @@
-package com.sample.bank
+package com.sample.bank.domain
 
 import java.util.*
 

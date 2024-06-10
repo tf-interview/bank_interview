@@ -1,6 +1,6 @@
 package com.sample.bank.domain.exchange
 
-import com.sample.bank.TestCurrencies
+import com.sample.bank.domain.TestCurrencies
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.math.BigDecimal

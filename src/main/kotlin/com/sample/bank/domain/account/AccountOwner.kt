@@ -31,6 +31,7 @@ data class Pesel(val raw: String) {
     }
 
     fun birthDate(): LocalDate {
+        // check intervals https://www.gov.pl/web/gov/czym-jest-numer-pesel
         val year = raw.substring(0, 2).toInt() + 1900
         val month = raw.substring(2, 4).toInt()
         val day = raw.substring(4, 6).toInt()

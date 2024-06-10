@@ -1,7 +1,7 @@
 package com.sample.bank.domain.exchange
 
-import com.sample.bank.TestCurrencies.PLN
-import com.sample.bank.TestCurrencies.USD
+import com.sample.bank.domain.TestCurrencies.PLN
+import com.sample.bank.domain.TestCurrencies.USD
 import com.sample.bank.domain.account.AccountOwnerId
 import com.sample.bank.domain.generators.CurrencyAccountGenerator.currencyAccount
 import com.sample.bank.domain.generators.DoExchangeCommandGenerator.doExchangeCommand

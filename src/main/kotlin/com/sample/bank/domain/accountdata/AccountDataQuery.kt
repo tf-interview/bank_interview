@@ -6,9 +6,11 @@ import com.sample.bank.domain.account.LastName
 import com.sample.bank.domain.account.Pesel
 import com.sample.bank.domain.exchange.CurrencyAccountId
 import com.sample.bank.domain.ports.AccountDataReadOnlyRepository
+import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.util.*
 
+@Service
 class AccountDataQuery(
     private val accountDataRepository: AccountDataReadOnlyRepository
 ) {
@@ -23,10 +25,10 @@ data class AccountData(
     val pesel: Pesel,
     val firstName: FirstName,
     val lastName: LastName,
-    val accounts: List<CurrencyAccountQuery>
+    val accounts: List<CurrencyAccountData>
 )
 
-data class CurrencyAccountQuery(
+data class CurrencyAccountData(
     val id: CurrencyAccountId,
     val amount: BigDecimal,
     val currency: Currency
