@@ -6,5 +6,5 @@ import com.sample.bank.domain.exchange.CurrencyAccounts
 
 interface CurrencyAccountsRepository {
     fun findByAccountOwnerId(accountOwnerId: AccountOwnerId): CurrencyAccounts
-    fun saveOrUpdate(currencyAccount: CurrencyAccount)
+    fun saveOrUpdate(currencyAccount: CurrencyAccount, accountOwnerId: AccountOwnerId)
 }

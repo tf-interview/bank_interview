@@ -19,14 +19,14 @@ class AccountOwnerRegistrationService(
     fun registerNewAccountOwner(command: RegisterAccountOwnerCommand) {
         verifiers.verify(command)
         val createdAccountOwner = AccountOwner.create(command)
-        accountOwnersRepository.saveOrUpdate(createdAccountOwner)
+        accountOwnersRepository.insert(createdAccountOwner)
         log.info("registered new $createdAccountOwner")
 
         val currencyAccount = CurrencyAccount.create(
             Currencies.initialCurrency,
             command.initialAmount
         )
-        currencyAccountsRepository.saveOrUpdate(currencyAccount)
+        currencyAccountsRepository.saveOrUpdate(currencyAccount, createdAccountOwner.id)
         log.info("created $currencyAccount for registered user")
     }
 

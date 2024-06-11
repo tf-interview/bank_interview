@@ -22,5 +22,3 @@ data class CurrencyAccountResponse(
     val currency: String,
     val amount: String
 )
-
-

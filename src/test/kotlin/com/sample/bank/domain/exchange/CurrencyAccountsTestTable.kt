@@ -7,7 +7,7 @@ import com.sample.bank.domain.generators.MoneyGenerator.usd
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class CurrencyAccountsTest {
+class CurrencyAccountsTestTable {
 
     private val accountOwnerId = AccountOwnerId("AccountOwnerId")
 

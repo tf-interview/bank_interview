@@ -2,7 +2,7 @@ package com.sample.bank.domain.accountdata
 
 import org.junit.jupiter.api.Test
 
-class AccountDataQueryTest {
+class AccountOwnerTableDataQueryTest {
 
     @Test
     fun shouldReturnDataWhenAccountExists() {

@@ -2,7 +2,7 @@ package com.sample.bank.domain.account
 
 import org.junit.jupiter.api.Test
 
-class AccountOwnerRegistrationServiceTest {
+class AccountOwnerTableOwnerRegistrationServiceTest {
 
     @Test
     fun shouldRegisterNewAccount() {

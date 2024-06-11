@@ -44,5 +44,6 @@ class AccountDataJson(
 
 class CurrencyAccountJson(
     val currency: String,
+    // format amount
     val amount: String
 )

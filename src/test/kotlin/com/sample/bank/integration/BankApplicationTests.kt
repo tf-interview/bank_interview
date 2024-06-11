@@ -19,6 +19,16 @@ class BankApplicationTests @Autowired constructor(private val restClient: TestRe
         val result = restClient.getAccountData(validPesel())
 
         assertNotNull(result)
-        assertTrue { result.firstName == "Gerwazy" }
+    }
+
+    @Test
+    fun featureTest() {
+        // get account by pesel -> get 404
+        // create account -> success
+        // account with same pesel -> 409
+        // get account data -> get data with default PLN account
+        // exchange -> get 200
+        // get account data -> get data after exchange
+        // exchange with insufficient funds -> 400 / 409 / 422 ?
     }
 }

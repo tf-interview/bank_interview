@@ -43,10 +43,10 @@ class ExchangeServiceTest {
 
         verify(currencyAccountsRepository).saveOrUpdate(check {
             assertTrue { it.money == usd("3.65") }
-        })
+        }, accountOwnerId)
         verify(currencyAccountsRepository).saveOrUpdate(check {
             assertTrue { it.money == pln("3.00") }
-        })
+        }, accountOwnerId)
     }
 
     @Test
