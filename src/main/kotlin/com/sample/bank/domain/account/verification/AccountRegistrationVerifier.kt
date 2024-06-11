@@ -1,6 +1,7 @@
 package com.sample.bank.domain.account.verification
 
 import com.sample.bank.domain.account.RegisterAccountOwnerCommand
+import com.sample.bank.domain.account.verification.VerificationFailureReason.ACCOUNT_ALREADY_EXISTS
 import com.sample.bank.domain.account.verification.VerificationFailureReason.NOT_ADULT
 import com.sample.bank.domain.ports.AccountOwnersRepository
 import org.springframework.stereotype.Component
@@ -26,8 +27,8 @@ class DuplicationAccountRegistrationVerifier(
 ) : AccountRegistrationVerifier {
 
     override fun verify(command: RegisterAccountOwnerCommand): VerificationResult {
-        repository.findByPesel(command.pesel)
-        // verify is null
+        val existingAccountOwner = repository.findByPesel(command.pesel)
+        if (existingAccountOwner != null) return VerificationResult.Failure(ACCOUNT_ALREADY_EXISTS)
         return VerificationResult.Success
     }
 }

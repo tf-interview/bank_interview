@@ -29,7 +29,7 @@ class RegisterEndpoint(private val registrationService: AccountOwnerRegistration
     }
 }
 
-data class RegisterAccountRequest(val firstName: String, val lastName: LastName, val initialAmount: String)
+data class RegisterAccountRequest(val firstName: String, val lastName: String, val initialAmount: String)
 
 fun RegisterAccountRequest.toCommand(pesel: String) =
     RegisterAccountOwnerCommand(

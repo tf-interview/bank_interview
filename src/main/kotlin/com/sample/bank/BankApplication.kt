@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.ImportAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = [BankApplication::class])
 @ImportAutoConfiguration(ExposedAutoConfiguration::class)
 class BankApplication
 
