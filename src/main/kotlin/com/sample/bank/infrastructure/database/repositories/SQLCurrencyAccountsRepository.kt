@@ -22,7 +22,7 @@ class SQLCurrencyAccountsRepository : CurrencyAccountsRepository {
             CurrencyAccountTable.id,
             CurrencyAccountTable.amount,
             CurrencyAccountTable.currency
-        ).where { CurrencyAccountTable.accountId.eq(UUID.fromString(accountOwnerId.raw)) }
+        ).forUpdate().where { CurrencyAccountTable.accountId.eq(UUID.fromString(accountOwnerId.raw)) }
             .map {
                 CurrencyAccount(
                     id = CurrencyAccountId(it[CurrencyAccountTable.id].toString()),
