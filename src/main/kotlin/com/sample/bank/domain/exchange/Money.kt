@@ -19,13 +19,20 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
 
     fun add(other: Money): Money {
         require(this.currency == other.currency) { "currency $currency is different than ${other.currency}" }
-        return from(amount = this.amount.add(other.amount), currency = this.currency)
+        return Money.from(amount = this.amount.add(other.amount), currency = this.currency)
     }
 
     fun exchange(exchangeRate: ExchangeRate): Money {
-        require(this.currency == exchangeRate.from) { "currency $currency is different than ${exchangeRate.from}" }
-        return from(amount = this.amount.multiply(exchangeRate.rate), currency = exchangeRate.to)
+        return when (this.currency) {
+            exchangeRate.from ->
+                Money.from(amount = this.amount.multiply(exchangeRate.rate), currency = exchangeRate.to)
+            exchangeRate.to ->
+                Money.from(amount = this.amount.split(exchangeRate.rate), currency = exchangeRate.from)
+            else -> throw IllegalStateException()
+        }
     }
+
+    private fun BigDecimal.split(other: BigDecimal) = divide(other, 2, defaultRoundingMode)
 
     companion object {
         private val defaultRoundingMode = RoundingMode.HALF_EVEN

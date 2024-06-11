@@ -11,7 +11,7 @@ import java.math.BigDecimal
 @RestController
 class RegisterEndpoint(private val registrationService: AccountOwnerRegistrationService) {
 
-    // should be idempotent
+    // should be idempotent (initial amount?)
     @PutMapping(
         value = ["/accounts/{pesel}"],
         consumes = ["application/json"]

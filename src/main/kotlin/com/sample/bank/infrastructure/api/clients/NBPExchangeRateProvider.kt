@@ -18,8 +18,8 @@ class NBPExchangeRateProvider(private val client: NBPClient) : ExchangeRateProvi
 }
 
 private fun NBPExchageRate.toExchangeRate() = ExchangeRate(
-    from = Currency.getInstance("PLN"),
-    to = Currency.getInstance("USD"),
+    from = Currency.getInstance("USD"),
+    to = Currency.getInstance("PLN"),
     rate = BigDecimal(this.rates.first().mid)
 )
 
