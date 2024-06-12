@@ -12,5 +12,8 @@ class TestRestClientConfiguration {
     //  inject port - make it random
 
     @Bean
-    fun testRestTemplate(): TestRestTemplate = TestRestTemplate(RestTemplateBuilder().rootUri("http://127.0.0.1:8080"))
+    fun testRestTemplate(): TestRestTemplate = TestRestTemplate(
+        RestTemplateBuilder()
+            .rootUri("http://localhost:8080/")
+    )
 }
