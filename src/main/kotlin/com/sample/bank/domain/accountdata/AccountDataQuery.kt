@@ -15,7 +15,7 @@ class AccountDataQuery(
     private val accountDataRepository: AccountDataReadOnlyRepository
 ) {
 
-    fun findAccountDataByPesel(pesel: Pesel): AccountData {
+    fun getAccountByPesel(pesel: Pesel): AccountData {
         return accountDataRepository.getByPesel(pesel)
     }
 }

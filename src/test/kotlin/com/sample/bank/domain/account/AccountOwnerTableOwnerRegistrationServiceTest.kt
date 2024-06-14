@@ -6,7 +6,7 @@ class AccountOwnerTableOwnerRegistrationServiceTest {
 
     @Test
     fun shouldRegisterNewAccount() {
-        //invoke register
+        //register
         //check if accountowner added
         //check if currencyaccount added (with initial amount)
     }

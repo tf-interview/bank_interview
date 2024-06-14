@@ -1,6 +1,8 @@
 package com.sample.bank.domain.exchange
 
 import com.sample.bank.domain.ports.ExchangeRate
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.ResponseStatus
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.Currency
@@ -14,7 +16,9 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
 
     fun subtract(other: Money): Money {
         require(this.currency == other.currency) { "currency $currency is different than ${other.currency}" }
-        return from(amount = this.amount.subtract(other.amount), currency = this.currency)
+        val newAmount = this.amount.subtract(other.amount)
+        if(newAmount.signum() < 0) throw InsufficientFundsException()
+        return from(amount = newAmount, currency = this.currency)
     }
 
     fun add(other: Money): Money {
@@ -26,8 +30,10 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
         return when (this.currency) {
             exchangeRate.from ->
                 Money.from(amount = this.amount.multiply(exchangeRate.rate), currency = exchangeRate.to)
+
             exchangeRate.to ->
                 Money.from(amount = this.amount.split(exchangeRate.rate), currency = exchangeRate.from)
+
             else -> throw IllegalStateException()
         }
     }
@@ -51,3 +57,6 @@ object Currencies {
         Currency.getInstance("USD")
     )
 }
+
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+class InsufficientFundsException: RuntimeException()

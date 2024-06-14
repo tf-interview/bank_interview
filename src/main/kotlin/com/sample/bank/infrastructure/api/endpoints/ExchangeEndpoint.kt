@@ -15,7 +15,7 @@ import java.util.*
 class ExchangeEndpoint(private val exchangeService: ExchangeService) {
 
     @PostMapping(
-        "/accounts/{pesel}/exchange",
+        value = ["/accounts/{pesel}/exchange"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

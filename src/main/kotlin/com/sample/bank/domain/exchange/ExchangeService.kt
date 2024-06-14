@@ -1,6 +1,5 @@
 package com.sample.bank.domain.exchange
 
-import com.sample.bank.domain.account.AccountOwnerId
 import com.sample.bank.domain.account.Pesel
 import com.sample.bank.domain.ports.AccountOwnersRepository
 import com.sample.bank.domain.ports.CurrencyAccountsRepository
@@ -9,7 +8,7 @@ import com.sample.bank.getLoggerForClass
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
-import java.util.Currency
+import java.util.*
 
 @Service
 class ExchangeService(

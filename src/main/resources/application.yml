@@ -1,0 +1,20 @@
+spring:
+  application.name: bank
+  h2.console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+
+clients.nbp.url: https://api.nbp.pl
+
+logging.level.Exposed: DEBUG
+logging.level.org.zalando.logbook: TRACE
+
+logbook:
+  format: http
+  filter:
+    enabled: true
+    exclude:
+      - /health

@@ -2,12 +2,11 @@ package com.sample.bank.domain.exchange
 
 import com.sample.bank.domain.TestCurrencies.PLN
 import com.sample.bank.domain.TestCurrencies.USD
-import com.sample.bank.domain.account.AccountOwner
 import com.sample.bank.domain.account.AccountOwnerId
 import com.sample.bank.domain.account.Pesel
+import com.sample.bank.domain.generators.AccountOwnerGenerator.accountOwner
 import com.sample.bank.domain.generators.CurrencyAccountGenerator.currencyAccount
 import com.sample.bank.domain.generators.DoExchangeCommandGenerator.doExchangeCommand
-import com.sample.bank.domain.generators.AccountOwnerGenerator.accountOwner
 import com.sample.bank.domain.generators.MoneyGenerator.pln
 import com.sample.bank.domain.generators.MoneyGenerator.usd
 import com.sample.bank.domain.ports.AccountOwnersRepository
@@ -16,10 +15,7 @@ import com.sample.bank.domain.ports.ExchangeRate
 import com.sample.bank.domain.ports.ExchangeRateProvider
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.mockito.kotlin.check
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
+import org.mockito.kotlin.*
 import java.math.BigDecimal
 import kotlin.test.assertTrue
 
@@ -31,7 +27,7 @@ class ExchangeServiceTest {
     private val currencyAccountUSD = currencyAccount(money = usd("0"))
     private val currencyAccounts = CurrencyAccounts(accountOwnerId, listOf(currencyAccountPLN, currencyAccountUSD))
 
-    private val accountOwner = accountOwner(pesel = pesel)
+    private val accountOwner = accountOwner(id = accountOwnerId, pesel = pesel)
     private val exchangeRate = ExchangeRate(from = PLN, to = USD, rate = BigDecimal("3.65"))
     private val accountOwnersRepository = mock<AccountOwnersRepository> {
         on { it.findByPesel(pesel) } doReturn (accountOwner)
@@ -52,17 +48,17 @@ class ExchangeServiceTest {
 
         verify(currencyAccountsRepository).saveOrUpdate(check {
             assertTrue { it.money == usd("3.65") }
-        }, accountOwnerId)
+        }, eq(accountOwnerId))
         verify(currencyAccountsRepository).saveOrUpdate(check {
             assertTrue { it.money == pln("3.00") }
-        }, accountOwnerId)
+        }, eq(accountOwnerId))
     }
 
     @Test
     fun shouldThrowWhenInsufficientFunds() {
         val command = doExchangeCommand(pesel, amount = "4.01")
 
-        assertThrows<IllegalArgumentException> {
+        assertThrows<InsufficientFundsException> {
             service.doExchange(command)
         }
     }

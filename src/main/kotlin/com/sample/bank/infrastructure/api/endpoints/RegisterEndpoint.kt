@@ -2,17 +2,15 @@ package com.sample.bank.infrastructure.api.endpoints
 
 import com.sample.bank.domain.account.*
 import com.sample.bank.getLoggerForClass
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
 @RestController
 class RegisterEndpoint(private val registrationService: AccountOwnerRegistrationService) {
 
-    // should be idempotent (initial amount?)
-    @PutMapping(
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(
         value = ["/accounts/{pesel}"],
         consumes = ["application/json"]
     )

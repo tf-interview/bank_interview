@@ -15,7 +15,7 @@ class AccountDataEndpoint(private val query: AccountDataQuery) {
     @GetMapping("/accounts/{pesel}", produces = ["application/json"])
     fun getAccountData(@PathVariable("pesel") pesel: String): AccountDataJson {
         log.info("fetching account data for $pesel")
-        return query.findAccountDataByPesel(Pesel(pesel)).toJson()
+        return query.getAccountByPesel(Pesel(pesel)).toJson()
     }
 
     companion object {
